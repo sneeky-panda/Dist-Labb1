@@ -26,11 +26,11 @@ CREATE TABLE products (
 -- Skapa tabell för ordrar
 CREATE TABLE orders (
                         id INT AUTO_INCREMENT PRIMARY KEY,
-                        user_id INT,
+                        email VARCHAR(100) NOT NULL UNIQUE,
                         order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                         total_amount DECIMAL(10, 2) NOT NULL,
                         status VARCHAR(50) NOT NULL DEFAULT 'Pending',
-                        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                        FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE
 );
 
 -- Skapa tabell för orderdetaljer (produkter i en order)
