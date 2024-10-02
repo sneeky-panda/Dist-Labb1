@@ -3,7 +3,7 @@ services:
     image: mysql:latest  # Använd MySQL senaste version
     environment:
       MYSQL_ROOT_PASSWORD: password  # Ange root-lösenord
-      MYSQL_DATABASE: mydatabase  # Skapa en databas vid start
+      MYSQL_DATABASE: Labb1  # Skapa en databas vid start
       MYSQL_USER: user  # Skapa en användare
       MYSQL_PASSWORD: userpassword  # Ange lösenord för användaren
     volumes:
