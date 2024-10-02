@@ -1,5 +1,5 @@
 <%@ page import="se.kth.distribuerad.labb1.BO.Item" %>
-<%@ page import="docker java.util.Collection" %>
+<%@ page import="java.util.Collection" %>
 <%--
   Created by IntelliJ IDEA.
   User: Carlo
