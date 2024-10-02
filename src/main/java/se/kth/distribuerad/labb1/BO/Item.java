@@ -10,16 +10,14 @@ public class Item {
     private int ID;
     private int price;
 
-    static public Collection<Item> searchItems(String group){
-        return null;
-        //return ItemDB.searchItems(group);
+    static public Collection searchItems(String group){
+        return ItemDB.searchItems(group);
     }
 
-    protected Item(int ID, String name, String description, int price){
+    protected Item(int ID, String name, String description){
         this.ID = ID;
         this.name = name;
         this.description = description;
-        this.price = price;
     }
 
     public String getName(){
