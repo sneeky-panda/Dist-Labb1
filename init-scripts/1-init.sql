@@ -1,16 +1,16 @@
 CREATE TABLE users (
                        user_ID INT AUTO_INCREMENT PRIMARY KEY,
-                       email VARCHAR(100) NOT NULL,
+                       email VARCHAR(100) NOT NULL UNIQUE,
                        username VARCHAR(50) NOT NULL,
                        password VARCHAR(250) NOT NULL,  -- Ökad längd för hashade lösenord
-                       role ENUM('Admin', 'Lager', 'User') NOT NULL
+                       role VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE products (
                           product_ID INT AUTO_INCREMENT PRIMARY KEY,
                           product_name VARCHAR(250) NOT NULL,
                           product_description VARCHAR(250),
-                          price INT NOT NULL,
+                          price DOUBLE NOT NULL,
                           stock INT NOT NULL CHECK (stock >= 0)  -- Lager kan inte vara negativt
 );
 
