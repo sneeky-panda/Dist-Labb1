@@ -1,5 +1,8 @@
 package se.kth.distribuerad.labb1.DB;
 
+import se.kth.distribuerad.labb1.DB.User.User;
+import se.kth.distribuerad.labb1.DB.User.UserDAOImpl;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +22,7 @@ public class TestConnection {
             // Initiera userDAO efter att anslutningen har etablerats
             userDAO = new UserDAOImpl(connection);
 
-            System.out.println("1 för att lägga till användare. 2 för att ta bort användare.");
+            System.out.println("1 för att lägga till användare. 2 för att ta bort användare. 3för en användare 4 för alla");
             int x = scanner.nextInt();
             scanner.nextLine();  // Rensa radbrytning efter nextInt()
 
@@ -63,7 +66,23 @@ public class TestConnection {
                         System.out.println("Inga användare finns i databasen.");
                     }
                     break;  // Viktigt att lägga till för att undvika att fortsätta till nästa case
-
+                case 3:
+                    System.out.println("Ange email för att ta bort användare:");
+                    eMail = scanner.nextLine();
+                    User user = userDAO.getUserByEmail(eMail);
+                    System.out.println(user);
+                    break;
+                case 4:
+                    users = userDAO.getAllUsers();
+                    if (users.isEmpty()) {
+                        System.out.println("Inga användare hittades i databasen.");
+                    } else {
+                        System.out.println("Lista över alla användare i databasen:");
+                        for (User usert : users) {
+                            System.out.println(usert);
+                        }
+                    }
+                    break;
                 default:
                     System.out.println("Ogiltigt val, vänligen välj 1 eller 2.");
                     break;
