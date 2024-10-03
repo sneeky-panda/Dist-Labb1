@@ -1,8 +1,7 @@
 package se.kth.distribuerad.labb1.BO;
 
 import java.util.Collection;
-
-import se.kth.distribuerad.labb1.DB.ItemDB;
+;
 
 public class Item {
     private String name;
@@ -11,7 +10,7 @@ public class Item {
     private int price;
 
     static public Collection searchItems(String group){
-        return ItemDB.searchItems(group);
+        return null;//ItemDB.searchItems(group);
     }
 
     protected Item(int ID, String name, String description){
