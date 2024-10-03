@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/init-scripts/1-init.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/se/kth/distribuerad/labb1/DB/DAO/ItemDAO.java" dialect="GenericSQL" />
   </component>
 </project>

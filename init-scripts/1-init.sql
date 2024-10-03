@@ -11,7 +11,8 @@ CREATE TABLE products (
                           product_name VARCHAR(250) NOT NULL,
                           product_description VARCHAR(250),
                           price INT NOT NULL,
-                          stock INT NOT NULL CHECK (stock >= 0)  -- Lager kan inte vara negativt
+                          stock INT NOT NULL CHECK (stock >= 0),  -- Lager kan inte vara negativt
+                          category VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE orders (

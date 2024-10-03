@@ -46,7 +46,6 @@
                 <tr>
                     <td> <%= item.getID() %></td>
                     <td> <%= item.getName()%> </td>
-                    <td> <%= item.getDescription()%> </td>
                     <td> <%= item.getPrice()%> </td>
                 </tr>
         <%
