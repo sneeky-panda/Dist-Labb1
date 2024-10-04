@@ -63,12 +63,27 @@ public class ProductDAOImpl implements ProductDAO{
         return products;}
 
     @Override
-    public void updateProduct(String productName) {
-
+    public void updateProduct(Product product) throws SQLException{
+        String query = "UPDATE products SET product_name = ?, product_description = ?, price = ?, stock = ? WHERE product_ID = ?";
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setString(2, product.getProductDescription());
+            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setInt(4, product.getInStock());
+            preparedStatement.setInt(5, product.getProductID());
+            preparedStatement.executeUpdate();
+            System.out.println("Produkten har uppdaterats.");
+        }
     }
 
     @Override
-    public void deleteProduct(String productName) {
+    public void deleteProduct(String productName) throws SQLException{
+        String query = "DELETE FROM products WHERE product_name = ?";
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, productName);
+            preparedStatement.executeUpdate();
+            System.out.println("Produkten har tagits bort.");
+        }
 
     }
 }

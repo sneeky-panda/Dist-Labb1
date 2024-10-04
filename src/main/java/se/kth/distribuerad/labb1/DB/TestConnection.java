@@ -26,7 +26,7 @@ public class TestConnection {
             System.out.println("1 för att lägga till användare. 2 för att ta bort användare. 3för en användare 4 för alla");
             int x = scanner.nextInt();
             scanner.nextLine();  // Rensa radbrytning efter nextInt()
-
+            String eMail;
             switch (x) {
                 case 1:
                     System.out.println("Ange email:");
@@ -52,7 +52,7 @@ public class TestConnection {
 
                 case 2:
                     System.out.println("Ange email för att ta bort användare:");
-                    String eMail = scanner.nextLine();
+                    eMail = scanner.nextLine();
 
                     List<User> allUsers = userDAO.getAllUsers();
                     if (allUsers.size() != 0) {
@@ -68,7 +68,7 @@ public class TestConnection {
                     }
                     break;  // Viktigt att lägga till för att undvika att fortsätta till nästa case
                 case 3:
-                    System.out.println("Ange email för att ta bort användare:");
+                    System.out.println("Ange email hämta användare:");
                     eMail = scanner.nextLine();
                     User user = userDAO.getUserByEmail(eMail);
                     System.out.println(user);
@@ -84,8 +84,18 @@ public class TestConnection {
                         }
                     }
                     break;
+                case 5:
+                    System.out.println("vem ska du ändra");
+                    eMail = scanner.nextLine();
+                    User temp = userDAO.getUserByEmail(eMail);
+                    System.out.println("Ange ange ny email");
+                    eMail = scanner.nextLine();
+                    temp.setEmail("ny@email.com");
+                    userDAO.updateUser(temp);
+                    System.out.println("Ange email uppdatera användare:");
+
                 default:
-                    System.out.println("Ogiltigt val, vänligen välj 1 eller 2.");
+                    System.out.println("Ogiltigt val, vänligen välj 1 till 5.");
                     break;
             }
 
