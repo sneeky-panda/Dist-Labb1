@@ -1,4 +1,4 @@
-package se.kth.distribuerad.labb1.DB.Product;
+package se.kth.distribuerad.labb1.DB.product;
 
 public class Product {
     private int productID;

@@ -1,4 +1,4 @@
-package se.kth.distribuerad.labb1.DB.Product;
+package se.kth.distribuerad.labb1.DB.product;
 import java.sql.SQLException;
 import java.util.List;
 
