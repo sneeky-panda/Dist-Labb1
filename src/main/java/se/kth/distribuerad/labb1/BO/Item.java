@@ -5,51 +5,43 @@ import java.util.Collection;
 
 public class Item {
     private String name;
-    private String description;
     private int ID;
     private int price;
+    private int stock;
+    private Category category;
 
-    static public Collection searchItems(String group){
+    static public Collection<Item> searchItems(String group){
         return null;//ItemDB.searchItems(group);
     }
 
-    protected Item(int ID, String name, String description){
+    public Item(int ID, String name, int price, int stock, Category category){
         this.ID = ID;
         this.name = name;
-        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.category = category;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
-    }
-
     public int getID(){
         return this.ID;
-    }
-
-    public void setID(int ID){
-        this.ID = ID;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public int getStock() {
+        return this.stock;
     }
+
+    public Category getCategory() {
+        return this.category;
+    }
+
 }
 
 
