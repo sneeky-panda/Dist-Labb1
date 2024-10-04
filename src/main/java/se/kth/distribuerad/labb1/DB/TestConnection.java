@@ -1,7 +1,7 @@
 package se.kth.distribuerad.labb1.DB;
 
 
-import se.kth.distribuerad.labb1.DB.user.User;
+import se.kth.distribuerad.labb1.BO.User;
 import se.kth.distribuerad.labb1.DB.user.UserDAOImpl;
 
 import java.sql.Connection;

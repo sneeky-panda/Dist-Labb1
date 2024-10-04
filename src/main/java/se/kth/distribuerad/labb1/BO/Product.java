@@ -1,4 +1,4 @@
-package se.kth.distribuerad.labb1.DB.product;
+package se.kth.distribuerad.labb1.BO;
 
 public class Product {
     private int productID;
@@ -6,26 +6,38 @@ public class Product {
     private String productDescription;
     private double price;
     private  int inStock;
+    private Category category;
 
-    public Product(int productID, String product_name, String productDescription, double price, int inStock) {
+    public Product(int productID, String product_name, String productDescription, int price, int inStock, Category category) {
         this.productID = productID;
         this.productName = product_name;
         this.productDescription = productDescription;
         this.price = price;
         this.inStock = inStock;
+        this.category = category;
     }
 
-    public Product(String product_name, String productDescription, double price, int inStock) {
+    public Product(String product_name, String productDescription, int price, int inStock, Category category) {
         this.productName = product_name;
         this.productDescription = productDescription;
         this.price = price;
         this.inStock = inStock;
+        this.category = category;
     }
 
-    public Product(String product_name,double price,int inStock) {
+    public Product(String product_name,double price,int inStock, Category category) {
         this.productName = product_name;
         this.price=price;
         this.inStock=inStock;
+        this.category = category;
+    }
+
+    public Product(int productID, String product_name, int price, int inStock, Category category) {
+        this.productID = productID;
+        this.productName = product_name;
+        this.price = price;
+        this.inStock = inStock;
+        this.category = category;
     }
 
     public int getProductID() {
@@ -66,6 +78,14 @@ public class Product {
 
     public void setInStock(int inStock) {
         this.inStock = inStock;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

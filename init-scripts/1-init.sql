@@ -19,7 +19,7 @@ CREATE TABLE orders (
                         user_ID INT NOT NULL,
                         order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
                         total_price INT,
-                        status ENUM('Pending', 'Completed', 'Cancelled') DEFAULT 'Pending',
+                        status VARCHAR(25) DEFAULT 'Pending',
                         FOREIGN KEY (user_ID) REFERENCES users(user_ID)
 );
 
@@ -43,6 +43,7 @@ CREATE TABLE cartItems (
                            cart_item_ID INT AUTO_INCREMENT PRIMARY KEY,
                            cart_ID INT,
                            product_ID INT,
+
                            quantity INT NOT NULL CHECK (quantity > 0),  -- Kvantitet måste vara större än 0
                            FOREIGN KEY(cart_ID) REFERENCES cart(cart_ID) ON DELETE CASCADE,
                            FOREIGN KEY(product_ID) REFERENCES products(product_ID) ON DELETE RESTRICT
