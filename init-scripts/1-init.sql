@@ -8,7 +8,7 @@ CREATE TABLE users (
 
 CREATE TABLE products (
                           product_ID INT AUTO_INCREMENT PRIMARY KEY,
-                          product_name VARCHAR(250) NOT NULL,
+                          product_name VARCHAR(250) NOT NULL UNIQUE,
                           product_description VARCHAR(250),
                           price DOUBLE NOT NULL,
                           stock INT NOT NULL CHECK (stock >= 0)  -- Lager kan inte vara negativt
