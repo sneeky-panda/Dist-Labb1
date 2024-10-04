@@ -1,11 +1,14 @@
 package se.kth.distribuerad.labb1.BO;
 
+import java.util.ArrayList;
+
 public class User {
     private int userID;
     private String email;
     private String username;
     private String password;
-    private Role role;  // Använd enum Role
+    private Role role;
+    private ArrayList<Product> products;
 
     // Konstruktorer
     public User(int userID, String email, String username, String password, Role role) {
@@ -14,6 +17,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.products = new ArrayList<>();
     }
 
     public User(String email, String username, String password, Role role) {
@@ -21,6 +25,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.products = new ArrayList<>();
     }
 
     // Getters och Setters

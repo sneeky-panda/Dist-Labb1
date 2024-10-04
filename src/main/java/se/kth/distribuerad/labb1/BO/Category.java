@@ -1,5 +1,5 @@
 package se.kth.distribuerad.labb1.BO;
 
 public enum Category {
-    TOY, FOOD, ELECTRONIC, OTHER
+    DAIRY, MEAT, VEGETABLES ,FRUIT ,CANDY ,OTHER
 }

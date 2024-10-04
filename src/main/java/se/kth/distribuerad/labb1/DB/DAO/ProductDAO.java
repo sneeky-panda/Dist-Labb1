@@ -32,7 +32,7 @@ public class ProductDAO{
     public Product getProductByID(int id) throws SQLException {
         Product result = null;
         String query = "SELECT product_name, price, stock, category FROM products WHERE product_ID = ?";
-        try (PreparedStatement preparedStatement = con.prepareStatement(query);){
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)){
 
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -129,6 +129,5 @@ public class ProductDAO{
             preparedStatement.executeUpdate();
             System.out.println("Produkten har tagits bort.");
         }
-
     }
 }

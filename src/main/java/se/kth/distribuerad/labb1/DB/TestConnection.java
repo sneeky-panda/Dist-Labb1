@@ -1,8 +1,11 @@
 package se.kth.distribuerad.labb1.DB;
 
 
+import se.kth.distribuerad.labb1.BO.Role;
 import se.kth.distribuerad.labb1.BO.User;
-import se.kth.distribuerad.labb1.DB.user.UserDAOImpl;
+import se.kth.distribuerad.labb1.DB.DAO.UserDAO;
+
+
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +16,7 @@ public class TestConnection {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Connection connection = null;
-        UserDAOImpl userDAO = null;  // Flytta upp deklarationen av userDAO
+        UserDAO userDAO = null;  // Flytta upp deklarationen av userDAO
         try {
             connection = DBConnection.getConnection();
             if (connection != null) {
@@ -21,7 +24,7 @@ public class TestConnection {
             }
 
             // Initiera userDAO efter att anslutningen har etablerats
-            userDAO = new UserDAOImpl(connection);
+            userDAO = new UserDAO(connection);
 
             System.out.println("1 för att lägga till användare. 2 för att ta bort användare. 3för en användare 4 för alla");
             int x = scanner.nextInt();
@@ -38,7 +41,7 @@ public class TestConnection {
                     System.out.println("Ange roll:");
                     String role = scanner.nextLine();  // Roll anges som sträng nu
 
-                    User newUser = new User(email, namn, losenord, role);
+                    User newUser = new User(email, namn, losenord, Role.valueOf(role));
                     userDAO.addUser(newUser);
 
                     System.out.println("En ny användare har lagts till.");

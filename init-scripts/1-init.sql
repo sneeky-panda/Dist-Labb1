@@ -43,7 +43,7 @@ CREATE TABLE cartItems (
                            cart_item_ID INT AUTO_INCREMENT PRIMARY KEY,
                            cart_ID INT,
                            product_ID INT,
-
+                           price INT NOT NULL,
                            quantity INT NOT NULL CHECK (quantity > 0),  -- Kvantitet måste vara större än 0
                            FOREIGN KEY(cart_ID) REFERENCES cart(cart_ID) ON DELETE CASCADE,
                            FOREIGN KEY(product_ID) REFERENCES products(product_ID) ON DELETE RESTRICT
