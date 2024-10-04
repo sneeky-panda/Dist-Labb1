@@ -1,4 +1,4 @@
-package se.kth.distribuerad.labb1.DB.User;
+package se.kth.distribuerad.labb1.DB.user;
 
 
 import java.sql.*;
