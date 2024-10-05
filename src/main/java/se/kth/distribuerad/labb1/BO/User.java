@@ -27,6 +27,11 @@ public class User {
         this.role = role;
         this.products = new ArrayList<>();
     }
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+        this.products = new ArrayList<>();
+    }
 
     // Getters och Setters
     public int getUserID() { return userID; }
