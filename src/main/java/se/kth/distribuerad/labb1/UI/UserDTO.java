@@ -1,6 +1,7 @@
 package se.kth.distribuerad.labb1.UI;
 
 import se.kth.distribuerad.labb1.BO.Role;
+import se.kth.distribuerad.labb1.BO.Services.UserService;
 
 public class UserDTO {
     private int userID;
@@ -49,6 +50,10 @@ public class UserDTO {
 
     public void setRole(Role role) { this.role = role; }
 
+   /* public UserDTO getUser(String email){
+        return UserService(email);
+    }*/
+
 
     @Override
     public String toString() {
@@ -56,6 +61,7 @@ public class UserDTO {
                 "userID=" + userID +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
+                ", password='"+ password + '\''+
                 ", role=" + role +
                 '}';
     }

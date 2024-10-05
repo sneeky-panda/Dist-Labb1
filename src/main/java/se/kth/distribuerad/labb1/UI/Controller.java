@@ -11,6 +11,7 @@ import se.kth.distribuerad.labb1.BO.Cart;
 import se.kth.distribuerad.labb1.BO.Product;
 import se.kth.distribuerad.labb1.BO.Services.CartService;
 import se.kth.distribuerad.labb1.BO.*;
+import se.kth.distribuerad.labb1.DB.DAO.UserDAO;
 import se.kth.distribuerad.labb1.DB.DBConnection;
 import se.kth.distribuerad.labb1.BO.Services.*;
 
@@ -48,12 +49,16 @@ public class Controller extends HttpServlet {
     private void doActionRequest(String action, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 //user.getPassword().equals(compUser.getPassword())
+        // ProductDTO product = productService.getProductDTO(productID); // Get product details
         switch(action){
             case "login": {
                 System.out.println("Logging in");
-                UserDTO user =null;
-                user = new UserDTO(request.getParameter("username"), request.getParameter("password"));
-                UserDTO compUser = UserService.getUserDAO(user.getEmail());
+                UserDTO compUser = null;
+
+                compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
+                System.out.println(compUser.toString());
+
+                UserDTO user = UserService.getUserDAO(compUser.getEmail());
                 if(true){
                     response.sendRedirect("target/Labb1-1.0-SNAPSHOT/cart.jsp");
                 }else{

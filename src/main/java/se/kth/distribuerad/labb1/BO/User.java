@@ -29,7 +29,7 @@ public class User {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.products = new ArrayList<>();
+        //this.products = new ArrayList<>();
     }
 
     // Getters och Setters
