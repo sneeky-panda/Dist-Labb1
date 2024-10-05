@@ -45,7 +45,6 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
-        System.out.println(action);
         doActionRequest(action, request, response);
     }
 
@@ -55,22 +54,17 @@ public class Controller extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter is missing.");
             return;
         }
-//user.getPassword().equals(compUser.getPassword())
-        // ProductDTO product = productService.getProductDTO(productID); // Get product details
         switch(action){
             case "login": {
-                System.out.println("Logging in");
                 UserDTO compUser = null;
 
                 compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
-                System.out.println(compUser.toString());
                UserDTO user = userService.getUserDAO(compUser.getEmail());
-               //    System.out.println(user.toString());
-               /* if(true){
+               if(user.getPassword().equals(compUser.getPassword())){
                     response.sendRedirect("cart.jsp");
                 }else{
                     response.sendRedirect("index.jsp");
-                }*/
+                }
                 break;
             }
             case "logout":{

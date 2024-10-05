@@ -34,7 +34,6 @@ public class UserDAO {
     }
 
     public User getUserByEmail(String email) throws SQLException{
-        System.out.println("Abow här är email" + email);
         String query = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setString(1, email);
@@ -47,12 +46,11 @@ public class UserDAO {
                         resultSet.getString("password"),
                         Role.valueOf(resultSet.getString("role"))  // Konvertera från String till enum
                 );
-                System.out.println(newUser + "Bismillah");
+                return newUser;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Abow län");
         return null;
     }
 
