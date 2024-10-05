@@ -21,6 +21,7 @@ public class Controller extends HttpServlet {
     private String message;
     private static Connection con;
     private static ProductService productService;
+    private static UserService userService;
 
 
 
@@ -43,6 +44,7 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
+        System.out.println(action);
         doActionRequest(action, request, response);
     }
 
@@ -61,13 +63,14 @@ public class Controller extends HttpServlet {
 
                 compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
                 System.out.println(compUser.toString());
-
-                UserDTO user = UserService.getUserDAO(compUser.getEmail());
-                if(true){
-                    response.sendRedirect("target/Labb1-1.0-SNAPSHOT/cart.jsp");
+                response.sendRedirect("cart.jsp");
+               UserDTO user = userService.getUserDAO(compUser.getEmail());
+               //    System.out.println(user.toString());
+               /* if(true){
+                    response.sendRedirect("cart.jsp");
                 }else{
                     response.sendRedirect("index.jsp");
-                }
+                }*/
                 break;
             }
             case "logout":{
@@ -104,6 +107,10 @@ public class Controller extends HttpServlet {
 
     public static ProductService getProductService() {
         return productService;
+    }
+
+    public static UserService getUserService(){
+        return userService;
     }
 
     public static Collection<ProductDTO> getProducts() {

@@ -1,5 +1,6 @@
 package se.kth.distribuerad.labb1.BO.Services;
 
+import se.kth.distribuerad.labb1.BO.User;
 import se.kth.distribuerad.labb1.DB.DAO.UserDAO;
 import se.kth.distribuerad.labb1.UI.UserDTO;
 
@@ -11,13 +12,15 @@ import java.util.stream.Collectors;
 
 public class UserService {
 
-    private static UserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserService(Connection con){this.userDAO = new UserDAO(con);}
 
-    public static UserDTO getUserDAO(String email){
+    public UserDTO getUserDAO(String email){
         UserDTO user= null;
         try{
+
+
             return userDAO.getUserByEmail(email).makeDTO();
         }catch (SQLException e){e.printStackTrace();}
         return user;
