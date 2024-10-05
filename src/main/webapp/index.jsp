@@ -8,6 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="check-items">Hello Servlet</a>
+<a href="items.jsp">Show all items in database</a>
+<a href="cart.jsp">Show cart</a>
 </body>
 </html>

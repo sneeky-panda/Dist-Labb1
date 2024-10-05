@@ -7,10 +7,10 @@ services:
       MYSQL_USER: user  # Skapa en användare
       MYSQL_PASSWORD: userpassword  # Ange lösenord för användaren
     volumes:
+      - ./init:/docker-entrypoint-initdb.d  # Init directory för SQL-skript
       - dbdata:/var/lib/mysql  # Persistent lagring för MySQL-data
-      - ./init-scripts:/docker-entrypoint-initdb.d  # Init directory för SQL-skript
     ports:
-      - "3306:3306"  # Exponera MySQL på port 3306
+      - "3307:3306"  # Exponera MySQL på port 3306
 
 volumes:
   dbdata:

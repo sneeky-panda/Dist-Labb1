@@ -1,5 +1,3 @@
-<%@ page import="se.kth.distribuerad.labb1.BO.Item" %>
-<%@ page import="java.util.Collection" %>
 <%--
   Created by IntelliJ IDEA.
   User: Carlo
@@ -8,6 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="se.kth.distribuerad.labb1.BO.Product" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="se.kth.distribuerad.labb1.UI.ProductDTO" %>
+<%@ page import="se.kth.distribuerad.labb1.BO.Services.ProductService" %>
+<%@ page import="se.kth.distribuerad.labb1.UI.Controller"%>
+
+<%
+    Collection<ProductDTO> products = Controller.getProducts();
+%>
 <html>
 <head>
     <title>Items</title>
@@ -33,21 +40,27 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
+            <th>Stock</th>
         </tr>
         </thead>
         <tbody>
         <%
-            Collection<Item> items = Item.searchItems("group");
-            if(items != null && !items.isEmpty()){
-                for(Item item: items){
+            if(products != null && !products.isEmpty()){
+                for(ProductDTO productDTO: products){
             %>
                 <tr>
-                    <td> <%= item.getID() %></td>
-                    <td> <%= item.getName()%> </td>
-                    <td> <%= item.getDescription()%> </td>
-                    <td> <%= item.getPrice()%> </td>
+                    <td> <%= productDTO.getProductID() %></td>
+                    <td> <%= productDTO.getProductName()%> </td>
+                    <td> <%= productDTO.getInStock()%></td>
+                    <td> <%= productDTO.getPrice()%> </td>
+                    <td>
+                        <form action="<%=request.getContextPath()%>/check-items" method="post">
+                            <input type ="hidden" name="productID" value ="<%= productDTO.getProductID()%>"/>
+                            <input type ="hidden" name="action" value="cartAdd"/>
+                            <button type = "submit">Add to cart</button>
+                        </form>
+                    </td>
                 </tr>
         <%
                 }
@@ -61,6 +74,8 @@
             %>
         </tbody>
     </table>
+    <button onclick="window.location.href='<%= request.getContextPath() %>/index.jsp'">Go to Home</button>
+
 
 
 </body>
