@@ -29,6 +29,7 @@ public class Controller extends HttpServlet {
         try {
             con = DBConnection.getConnection();
             productService = new ProductService(con);
+            userService = new UserService(con);
         } catch (SQLException e) {e.printStackTrace();}
 
     }
@@ -63,7 +64,6 @@ public class Controller extends HttpServlet {
 
                 compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
                 System.out.println(compUser.toString());
-                response.sendRedirect("cart.jsp");
                UserDTO user = userService.getUserDAO(compUser.getEmail());
                //    System.out.println(user.toString());
                /* if(true){

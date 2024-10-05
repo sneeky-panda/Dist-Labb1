@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private Connection con = null;
+    private Connection con;
 
     public UserDAO(Connection con) {
         this.con = con;
@@ -34,22 +34,25 @@ public class UserDAO {
     }
 
     public User getUserByEmail(String email) throws SQLException{
+        System.out.println("Abow här är email" + email);
         String query = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return new User(
+                User newUser = new User(
                         resultSet.getInt("User_ID"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),
                         Role.valueOf(resultSet.getString("role"))  // Konvertera från String till enum
                 );
+                System.out.println(newUser + "Bismillah");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Abow län");
         return null;
     }
 

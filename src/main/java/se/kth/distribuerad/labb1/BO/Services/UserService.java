@@ -20,8 +20,6 @@ public class UserService {
     public UserDTO getUserDAO(String email){
         UserDTO user= null;
         try{
-
-
             return userDAO.getUserByEmail(email).makeDTO();
         }catch (SQLException e){
             e.printStackTrace();
