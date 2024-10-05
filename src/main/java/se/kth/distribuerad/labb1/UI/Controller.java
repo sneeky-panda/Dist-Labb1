@@ -11,6 +11,7 @@ import se.kth.distribuerad.labb1.BO.Cart;
 import se.kth.distribuerad.labb1.BO.Product;
 import se.kth.distribuerad.labb1.BO.Services.CartService;
 import se.kth.distribuerad.labb1.BO.*;
+import se.kth.distribuerad.labb1.DB.DAO.UserDAO;
 import se.kth.distribuerad.labb1.DB.DBConnection;
 import se.kth.distribuerad.labb1.BO.Services.*;
 
@@ -20,6 +21,7 @@ public class Controller extends HttpServlet {
     private String message;
     private static Connection con;
     private static ProductService productService;
+    private static UserService userService;
 
 
 
@@ -27,6 +29,7 @@ public class Controller extends HttpServlet {
         try {
             con = DBConnection.getConnection();
             productService = new ProductService(con);
+            userService = new UserService(con);
         } catch (SQLException e) {e.printStackTrace();}
 
     }
@@ -51,15 +54,14 @@ public class Controller extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter is missing.");
             return;
         }
-//user.getPassword().equals(compUser.getPassword())
         switch(action){
             case "login": {
-                System.out.println("Logging in");
-                UserDTO user =null;
-                user = new UserDTO(request.getParameter("username"), request.getParameter("password"));
-                UserDTO compUser = UserService.getUserDAO(user.getEmail());
-                if(true){
-                    response.sendRedirect("target/Labb1-1.0-SNAPSHOT/cart.jsp");
+                UserDTO compUser = null;
+
+                compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
+               UserDTO user = userService.getUserDAO(compUser.getEmail());
+               if(user.getPassword().equals(compUser.getPassword())){
+                    response.sendRedirect("cart.jsp");
                 }else{
                     response.sendRedirect("index.jsp");
                 }
@@ -99,6 +101,10 @@ public class Controller extends HttpServlet {
 
     public static ProductService getProductService() {
         return productService;
+    }
+
+    public static UserService getUserService(){
+        return userService;
     }
 
     public static Collection<ProductDTO> getProducts() {

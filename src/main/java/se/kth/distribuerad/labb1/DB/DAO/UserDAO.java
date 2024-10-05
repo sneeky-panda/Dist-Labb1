@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private Connection con = null;
+    private Connection con;
 
     public UserDAO(Connection con) {
         this.con = con;
@@ -39,13 +39,14 @@ public class UserDAO {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return new User(
+                User newUser = new User(
                         resultSet.getInt("User_ID"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),
                         Role.valueOf(resultSet.getString("role"))  // Konvertera från String till enum
                 );
+                return newUser;
             }
         } catch (SQLException e) {
             e.printStackTrace();

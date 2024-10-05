@@ -26,6 +26,11 @@ public class User {
         this.password = password;
         this.role = role;
     }
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+        //this.products = new ArrayList<>();
+    }
 
     // Getters och Setters
     public int getUserID() { return userID; }
@@ -48,6 +53,7 @@ public class User {
     public void setRole(Role role) { this.role = role; }
 
     public UserDTO makeDTO(){
+
         return new UserDTO(email,username,password,role);
     }
 
