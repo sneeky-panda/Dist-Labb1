@@ -55,8 +55,9 @@
                     <td> <%= productDTO.getInStock()%></td>
                     <td> <%= productDTO.getPrice()%> </td>
                     <td>
-                        <form action="<%=request.getContextPath()%>/cart/add" method="post">
+                        <form action="<%=request.getContextPath()%>/check-items" method="post">
                             <input type ="hidden" name="productID" value ="<%= productDTO.getProductID()%>"/>
+                            <input type ="hidden" name="action" value="cartAdd"/>
                             <button type = "submit">Add to cart</button>
                         </form>
                     </td>
@@ -73,6 +74,8 @@
             %>
         </tbody>
     </table>
+    <button onclick="window.location.href='<%= request.getContextPath() %>/index.jsp'">Go to Home</button>
+
 
 
 </body>
