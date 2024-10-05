@@ -21,7 +21,7 @@ public class UserDAO {
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getUsername());
             statement.setString(3, user.getPassword());
-            statement.setString(4, user.getRole().name());  // Använd enumens namn som String
+            statement.setString(4, user.getRole().name());
 
             System.out.println("Rollens värde som skickas: " + user.getRole());  // Debug-utskrift
 

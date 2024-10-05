@@ -61,9 +61,9 @@ public class Controller extends HttpServlet {
                 compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
                UserDTO user = userService.getUserDAO(compUser.getEmail());
                if(user.getPassword().equals(compUser.getPassword())){
-                    response.sendRedirect("cart.jsp");
-                }else{
                     response.sendRedirect("index.jsp");
+                }else{
+                    response.sendRedirect("login.jsp");
                 }
                 break;
             }
