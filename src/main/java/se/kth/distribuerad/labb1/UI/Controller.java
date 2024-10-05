@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import se.kth.distribuerad.labb1.BO.Cart;
 import se.kth.distribuerad.labb1.BO.Product;
 import se.kth.distribuerad.labb1.BO.Services.ProductService;
 import se.kth.distribuerad.labb1.DB.DBConnection;
@@ -35,6 +36,18 @@ public class Controller extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        if(cart == null){
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
+
+        //Product item = getItemFromRequest(request);
     }
 
     public static Collection<ProductDTO> getProducts() {

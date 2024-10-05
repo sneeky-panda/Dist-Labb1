@@ -40,8 +40,8 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
+            <th>Stock</th>
         </tr>
         </thead>
         <tbody>
@@ -52,6 +52,7 @@
                 <tr>
                     <td> <%= productDTO.getProductID() %></td>
                     <td> <%= productDTO.getProduct_name()%> </td>
+                    <td> <%= productDTO.getInStock()%></td>
                     <td> <%= productDTO.getPrice()%> </td>
                 </tr>
         <%
