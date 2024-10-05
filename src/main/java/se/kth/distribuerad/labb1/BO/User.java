@@ -1,5 +1,7 @@
 package se.kth.distribuerad.labb1.BO;
 
+import se.kth.distribuerad.labb1.UI.UserDTO;
+
 import java.util.ArrayList;
 
 public class User {
@@ -49,6 +51,10 @@ public class User {
     public Role getRole() { return role; }
 
     public void setRole(Role role) { this.role = role; }
+
+    public UserDTO makeDTO(){
+        return new UserDTO(email,username,password,role);
+    }
 
     @Override
     public String toString() {

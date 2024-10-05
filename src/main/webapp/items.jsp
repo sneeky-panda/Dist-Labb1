@@ -40,8 +40,8 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
+            <th>Stock</th>
         </tr>
         </thead>
         <tbody>
@@ -51,8 +51,15 @@
             %>
                 <tr>
                     <td> <%= productDTO.getProductID() %></td>
-                    <td> <%= productDTO.getProduct_name()%> </td>
+                    <td> <%= productDTO.getProductName()%> </td>
+                    <td> <%= productDTO.getInStock()%></td>
                     <td> <%= productDTO.getPrice()%> </td>
+                    <td>
+                        <form action="<%=request.getContextPath()%>/cart/add" method="post">
+                            <input type ="hidden" name="productID" value ="<%= productDTO.getProductID()%>"/>
+                            <button type = "submit">Add to cart</button>
+                        </form>
+                    </td>
                 </tr>
         <%
                 }
