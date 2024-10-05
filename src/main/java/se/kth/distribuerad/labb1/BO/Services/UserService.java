@@ -14,7 +14,8 @@ public class UserService {
 
     private UserDAO userDAO;
 
-    public UserService(Connection con){this.userDAO = new UserDAO(con);}
+    public UserService(Connection con){ this.userDAO = new UserDAO(con);
+    }
 
     public UserDTO getUserDAO(String email){
         UserDTO user= null;
@@ -22,7 +23,9 @@ public class UserService {
 
 
             return userDAO.getUserByEmail(email).makeDTO();
-        }catch (SQLException e){e.printStackTrace();}
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return user;
     }
 }
