@@ -103,5 +103,8 @@
     }
 %>
 
+<button onclick="window.location.href='<%= request.getContextPath() %>/index.jsp'">Go to Home</button>
+
+
 </body>
 </html>

@@ -47,6 +47,10 @@ public class Controller extends HttpServlet {
 
     private void doActionRequest(String action, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        if (action == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action parameter is missing.");
+            return;
+        }
 //user.getPassword().equals(compUser.getPassword())
         switch(action){
             case "login": {
@@ -72,12 +76,15 @@ public class Controller extends HttpServlet {
             case "cartAdd" :{
                 int productId = Integer.parseInt(request.getParameter("productID"));
                 CartService.addToCart(session, productId);
+                response.sendRedirect("items.jsp");
                 break;
             }
 
             case "cartRemove":{
                 int productID = Integer.parseInt(request.getParameter("productID"));
                 CartService.removeFromCart(session, productID);
+                response.sendRedirect("cart.jsp");
+
                 break;
             }
 
