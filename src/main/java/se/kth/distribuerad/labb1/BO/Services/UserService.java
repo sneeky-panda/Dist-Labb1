@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 public class UserService {
 
-    private UserDAO userDAO;
+    private static UserDAO userDAO;
 
     public UserService(Connection con){this.userDAO = new UserDAO(con);}
 
-    public UserDTO getUserDAO(String email){
+    public static UserDTO getUserDAO(String email){
         UserDTO user= null;
         try{
             return userDAO.getUserByEmail(email).makeDTO();
