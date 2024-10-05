@@ -105,7 +105,7 @@ public class TestConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.closeConnection(connection);
+            DBConnection.getInstance().closeConnection(connection);
             scanner.close();  // Stänger scanner för att undvika resurshanteringsproblem
         }
     }

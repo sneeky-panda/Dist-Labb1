@@ -1,8 +1,8 @@
-package se.kth.distribuerad.labb1.BO;
+package se.kth.distribuerad.labb1.UI;
 
-import java.util.ArrayList;
+import se.kth.distribuerad.labb1.BO.Role;
 
-public class User {
+public class UserDTO {
     private int userID;
     private String email;
     private String username;
@@ -10,7 +10,7 @@ public class User {
     private Role role;
 
     // Konstruktorer
-    public User(int userID, String email, String username, String password, Role role) {
+    public UserDTO(int userID, String email, String username, String password, Role role) {
         this.userID = userID;
         this.email = email;
         this.username = username;
@@ -18,16 +18,15 @@ public class User {
         this.role = role;
     }
 
-    public User(String email, String username, String password, Role role) {
+    public UserDTO(String email, String username, String password, Role role) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.role = role;
     }
-    public User(String email, String password) {
+    public UserDTO(String email, String password) {
         this.email = email;
         this.password = password;
-        this.products = new ArrayList<>();
     }
 
     // Getters och Setters

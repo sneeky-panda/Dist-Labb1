@@ -1,10 +1,12 @@
 package se.kth.distribuerad.labb1.BO;
 
+import se.kth.distribuerad.labb1.UI.ProductDTO;
+
 public class Product {
     private int productID;
     private String productName;
     private String productDescription;
-    private double price;
+    private int price;
     private  int inStock;
     private Category category;
 
@@ -25,7 +27,7 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String product_name,double price,int inStock, Category category) {
+    public Product(String product_name,int price,int inStock, Category category) {
         this.productName = product_name;
         this.price=price;
         this.inStock=inStock;
@@ -86,6 +88,10 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public ProductDTO makeDTO() {
+        return new ProductDTO(productID, productName, price, inStock, category);
     }
 
     @Override
