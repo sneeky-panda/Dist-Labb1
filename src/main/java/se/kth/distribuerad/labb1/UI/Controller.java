@@ -61,14 +61,27 @@ public class Controller extends HttpServlet {
                 compUser = new UserDTO(request.getParameter("username"), request.getParameter("password"));
                UserDTO user = userService.getUserDAO(compUser.getEmail());
                if(user.getPassword().equals(compUser.getPassword())){
-                    response.sendRedirect("index.jsp");
+                   session.setAttribute("loggedInUser", user);
+                   response.sendRedirect("index.jsp");
                 }else{
-                    response.sendRedirect("login.jsp");
+                    response.sendRedirect("login.jsp?error=invalid");
                 }
                 break;
             }
             case "logout":{
-                System.out.println("Logging out");
+                if(session != null){
+                    session.setAttribute("loggedInUser", null);
+                    session.setAttribute("cart", null);
+                }
+                response.sendRedirect("login.jsp");
+                break;
+            }
+            case "scrollItems":{
+                response.sendRedirect("items.jsp");
+                break;
+            }
+            case "showCart":{
+                response.sendRedirect("cart.jsp");
                 break;
             }
             case"register":{

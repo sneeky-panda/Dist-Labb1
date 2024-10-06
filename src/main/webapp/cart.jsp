@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <title>Cart</title>
+    <title>Varukorg</title>
     <style>
         table {
             width: 60%;
@@ -43,7 +43,7 @@
 </head>
 <body>
 
-<h2>Your Cart</h2>
+<h2>Din varukorg</h2>
 
 <%
     if (cart != null && !cart.isEmpty()) {
@@ -51,12 +51,11 @@
 <table>
     <thead>
     <tr>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Total</th>
-        <th>Actions</th>
+        <th>Produkt namn</th>
+        <th>Antal</th>
+        <th>Pris</th>
+        <th>Totalt pris för produkt</th>
+        <th>Ta bort från varukorgen</th>
     </tr>
     </thead>
     <tbody>
@@ -68,7 +67,6 @@
             totalPrice += productTotal;
     %>
     <tr>
-        <td><%= product.getProductID() %></td>
         <td><%= product.getProductName() %></td>
         <td><%= quantity %></td>
         <td><%= product.getPrice() %></td>
@@ -78,7 +76,7 @@
             <form action="<%= request.getContextPath() %>/check-items" method="post">
                 <input type="hidden" name="productID" value="<%= productID %>"/>
                 <input type="hidden" name="action" value="cartRemove"/>
-                <button type="submit">Remove</button>
+                <button type="submit">Ta bort</button>
             </form>
         </td>
     </tr>
@@ -88,22 +86,22 @@
     </tbody>
 </table>
 
-<p class="total">Total Price: <%= totalPrice %></p>
+<p class="total">Totalt Pris: <%= totalPrice %></p>
 
 <!-- Clear Cart Form -->
 <form action="<%= request.getContextPath() %>/check-items" method="post">
     <input type="hidden" name="action" value="cartClear"/>
-    <button type="submit">Clear Cart</button>
+    <button type="submit">Rensa varukorg</button>
 </form>
 <%
 } else {
 %>
-<p>Your cart is empty.</p>
+<p>Din varukorg är tom.</p>
 <%
     }
 %>
 
-<button onclick="window.location.href='<%= request.getContextPath() %>/index.jsp'">Go to Home</button>
+<button onclick="window.location.href='<%= request.getContextPath() %>/index.jsp'">Hem</button>
 
 
 </body>
