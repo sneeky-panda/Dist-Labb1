@@ -1,5 +1,8 @@
 package se.kth.distribuerad.labb1.BO;
 
+/**
+ *  Kategorier för de olika grupper som ska finnas i butiken
+ */
 public enum Category {
-    DAIRY, MEAT, VEGETABLES ,FRUIT ,CANDY ,OTHER
+    LAPTOP, MOUSE, SCREEN ,HDD ,SMARTPHONE ,OTHER
 }

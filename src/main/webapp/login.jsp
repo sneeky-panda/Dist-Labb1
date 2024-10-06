@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Logga in</h2>
-<h1><%= "Mat affären!" %>
+<h1><%= "Electro Will!" %>
 </h1>
 <form action="${pageContext.request.contextPath}/check-items?action=login" method="POST">
 

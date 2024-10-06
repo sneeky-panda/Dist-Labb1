@@ -2,7 +2,9 @@ package se.kth.distribuerad.labb1.BO;
 
 import java.util.Date;
 
+
 public class Order {
+
     private int orderID;
     private int userID;
     private Date date;
