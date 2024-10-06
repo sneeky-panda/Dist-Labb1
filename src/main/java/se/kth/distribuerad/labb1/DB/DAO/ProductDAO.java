@@ -8,14 +8,30 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * ProductDAO hanterar dataåtkomstoperationer för produkter i databasen.
+ */
 public class ProductDAO {
-
+    /**
+     * Anslutningen till databasen som används för att utföra SQL-operationer.
+     */
     private Connection con = null;
 
+    /**
+     * Skapar en ny instans av ProductDAO med en specifik databasanslutning.
+     *
+     * @param con Databasanslutningen som ska användas för att utföra operationer på produkttabellen.
+     */
     public ProductDAO(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Lägger till en ny produkt i databasen.
+     *
+     * @param product Produktobjektet som ska läggas till i databasen.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public void addProduct(Product product) throws SQLException {
 
         String query = "INSERT INTO products (product_name, product_description, price, stock) VALUES (?, ?, ?, ?)";
@@ -28,7 +44,13 @@ public class ProductDAO {
             System.out.println("En ny produkt har lagts till.");
         }
     }
-
+    /**
+     * Hämtar en produkt baserat på dess unika ID.
+     *
+     * @param id Det unika ID:t för produkten.
+     * @return Ett Product-objekt som representerar den hittade produkten, eller null om ingen produkt hittas.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public Product getProductByID(int id) throws SQLException {
         Product result = null;
         String query = "SELECT product_name, price, stock, category FROM products WHERE product_ID = ?";
@@ -50,6 +72,12 @@ public class ProductDAO {
         return result;
     }
 
+    /**
+     * Hämtar alla produkter som tillhör en viss kategori.
+     *
+     * @param category Kategorin som produkterna ska hämtas från.
+     * @return En samling av Product-objekt som representerar alla produkter i den specifika kategorin.
+     */
     public Collection<Product> getProductsByCategory(Category category) {
         Collection<Product> collection = new ArrayList<>();
         String query = "SELECT product_ID, product_name, price, stock FROM products WHERE category = ?";
@@ -72,6 +100,13 @@ public class ProductDAO {
         return collection;
     }
 
+    /**
+     * Hämtar en produkt baserat på dess namn.
+     *
+     * @param productName Namnet på produkten som ska hämtas.
+     * @return Ett Product-objekt som representerar den hittade produkten, eller null om ingen produkt hittas.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public Product getProductByName(String productName) throws SQLException {
         String query = "SELECT * FROM products WHERE product_name = ?";
         try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
@@ -90,7 +125,12 @@ public class ProductDAO {
         }
         return null;
     }
-
+    /**
+     * Hämtar alla produkter från databasen.
+     *
+     * @return En lista av Product-objekt som representerar alla produkter i databasen.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         String query = "SELECT * FROM products";
@@ -112,7 +152,12 @@ public class ProductDAO {
         return products;
     }
 
-
+    /**
+     * Uppdaterar en befintlig produkt i databasen.
+     *
+     * @param product Produktobjektet med de uppdaterade värdena.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public void updateProduct(Product product) throws SQLException {
         String query = "UPDATE products SET product_name = ?, product_description = ?, price = ?, stock = ? WHERE product_ID = ?";
         try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
@@ -126,7 +171,12 @@ public class ProductDAO {
         }
     }
 
-
+    /**
+     * Tar bort en produkt från databasen baserat på dess namn.
+     *
+     * @param productName Namnet på produkten som ska tas bort.
+     * @throws SQLException Om ett fel inträffar vid åtkomst till databasen.
+     */
     public void deleteProduct(String productName) throws SQLException {
         String query = "DELETE FROM products WHERE product_name = ?";
         try (PreparedStatement preparedStatement = con.prepareStatement(query)) {

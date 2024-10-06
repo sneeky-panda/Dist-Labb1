@@ -10,16 +10,29 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
+/**
+ * UserService hanterar logiken relaterad till användare.
+ * Den fungerar som en brygga mellan databasen och presentationslagret.
+ */
 public class UserService {
-
+    /**
+     * Dataåtkomstobjekt  för användare som tillåter interaktion med databasen.
+     */
     private UserDAO userDAO;
-
+    /**
+     * Skapar en ny instans av UserService och initierar DAO med en databasanslutning.
+     * @param con Databasanslutningen som används för att kommunicera med användardatabasen.
+     */
     public UserService() throws SQLException {
         Connection con = DBConnection.getConnection();
         this.userDAO = new UserDAO(con);
     }
-
+    /**
+     * Hämtar en användare baserat på deras e-postadress.
+     * Använder UserDAO för att hämta en användare från databasen och omvandlar den till en UserDTO.
+     * @param email E-postadressen för användaren som ska hämtas.
+     * @return En UserDTO som representerar användaren om den hittas, annars returneras null.
+     */
     public UserDTO getUserDAO(String email){
         UserDTO user= null;
         try{
