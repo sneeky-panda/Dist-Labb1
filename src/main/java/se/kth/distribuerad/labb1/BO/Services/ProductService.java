@@ -2,6 +2,7 @@ package se.kth.distribuerad.labb1.BO.Services;
 
 import se.kth.distribuerad.labb1.BO.Product;
 import se.kth.distribuerad.labb1.DB.DAO.ProductDAO;
+import se.kth.distribuerad.labb1.DB.DBConnection;
 import se.kth.distribuerad.labb1.UI.ProductDTO;
 
 import java.sql.Connection;
@@ -12,7 +13,8 @@ import java.util.stream.Collectors;
 public class ProductService {
     private ProductDAO productDAO;
 
-    public ProductService(Connection con) {
+    public ProductService() throws SQLException {
+        Connection con = DBConnection.getConnection();
         this.productDAO = new ProductDAO(con);
     }
 

@@ -27,9 +27,8 @@ public class Controller extends HttpServlet {
 
     static {
         try {
-            con = DBConnection.getConnection();
-            productService = new ProductService(con);
-            userService = new UserService(con);
+            productService = new ProductService();
+            userService = new UserService();
         } catch (SQLException e) {e.printStackTrace();}
 
     }

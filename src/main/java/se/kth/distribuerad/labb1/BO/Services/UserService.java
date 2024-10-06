@@ -2,6 +2,7 @@ package se.kth.distribuerad.labb1.BO.Services;
 
 import se.kth.distribuerad.labb1.BO.User;
 import se.kth.distribuerad.labb1.DB.DAO.UserDAO;
+import se.kth.distribuerad.labb1.DB.DBConnection;
 import se.kth.distribuerad.labb1.UI.UserDTO;
 
 
@@ -14,7 +15,9 @@ public class UserService {
 
     private UserDAO userDAO;
 
-    public UserService(Connection con){ this.userDAO = new UserDAO(con);
+    public UserService() throws SQLException {
+        Connection con = DBConnection.getConnection();
+        this.userDAO = new UserDAO(con);
     }
 
     public UserDTO getUserDAO(String email){
